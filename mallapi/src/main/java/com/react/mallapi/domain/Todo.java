@@ -22,6 +22,8 @@ public class Todo {
 
   private String content;
 
+  private String writer;
+
   private boolean complete;
 
   private LocalDate dueDate;
@@ -40,4 +42,6 @@ public class Todo {
   public void changeContent(String content) {
     this.content = content;
   }
+
+  public void changeWriter(String writer) {this.writer = writer;   }
 }

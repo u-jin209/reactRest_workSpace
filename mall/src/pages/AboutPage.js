@@ -5,7 +5,7 @@ import BasicLayout from "../layout/BasicLayout";
 function AboutPage(props) {
     return (
         <BasicLayout>
-            AbountPage
+            AboutPage
         </BasicLayout>
     );
 }

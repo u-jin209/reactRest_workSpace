@@ -18,6 +18,7 @@ public class TodoDTO {
     private String title;
 
     private String content;
+    private String writer;
 
     private boolean complete;
 

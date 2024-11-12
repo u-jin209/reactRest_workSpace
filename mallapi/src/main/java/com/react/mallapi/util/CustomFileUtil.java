@@ -44,12 +44,16 @@ public class CustomFileUtil {
     }
 
     public List<String> saveFile(List<MultipartFile> files) throws RuntimeException{
-        if(files == null || files.size() == 0) {
-            return null;
-        }
+        log.info(files);
         List<String> uploadNames = new ArrayList<>();
 
+        if(files == null || files.size() == 0) {
+            log.info("none file");
+            return null;
+        }
+
         for(MultipartFile file : files){
+            log.info(file.getOriginalFilename());
             String savedName = UUID.randomUUID().toString()+"_"+file.getOriginalFilename();
 
             Path savePath = Paths.get(uploadPath, savedName);
@@ -63,14 +67,14 @@ public class CustomFileUtil {
                     Thumbnails.of(savePath.toFile()).size(200,200).toFile(thumbnailPath.toFile());
                 }
 
-
+                uploadNames.add(savedName);
             }catch (IOException e){;
                 throw new RuntimeException(e);
             }
         }
 
 
-        return null;
+        return uploadNames;
     }
 
     public ResponseEntity<Resource> getFile(String fileName) {
@@ -94,19 +98,24 @@ public class CustomFileUtil {
             return;
         }
         fileNames.forEach(fileName -> {
+            System.out.println(fileName);
 
-            //썸네일 삭제
-            String thumbnailFileName = "s_"+fileName;
+            if(fileName!="C:\\Users\\USER\\reactRest_workSpace\\upload\\default.png"){
 
-            Path thumbnailFilePath = Paths.get(uploadPath ,thumbnailFileName);
-            Path filePath = Paths.get(uploadPath,fileName);
+                //썸네일 삭제
+                String thumbnailFileName = "s_"+fileName;
 
-            try {
-                Files.deleteIfExists(filePath);
-                Files.deleteIfExists(thumbnailFilePath);
-            } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
+                Path thumbnailFilePath = Paths.get(uploadPath ,thumbnailFileName);
+                Path filePath = Paths.get(uploadPath,fileName);
+
+                try {
+                    Files.deleteIfExists(filePath);
+                    Files.deleteIfExists(thumbnailFilePath);
+                } catch (IOException e) {
+                    throw new RuntimeException(e.getMessage());
+                }
             }
+
         });
     }
 

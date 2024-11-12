@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const BasicMenu = () => {
+
+
+  const loginState = useSelector(state => state.loginSlice)
+
   return (  
   <nav id='navbar' className=" flex  border-2">
 
@@ -15,11 +20,14 @@ const BasicMenu = () => {
         <li className="pr-6 text-2xl">
           <Link to={'/todo/'}>Todo</Link>
         </li>
+        <li className="pr-6 text-2xl">
+          <Link to={'/products/'}>Products</Link>
+        </li>
       </ul>
     </div>
 
     <div className="w-1/5 flex justify-end  p-4 font-medium">
-        <div className="text-black text-sm m-1 rounded" >
+      <div className="text-black text-sm m-1 rounded" >
           Login
         </div>
     </div>

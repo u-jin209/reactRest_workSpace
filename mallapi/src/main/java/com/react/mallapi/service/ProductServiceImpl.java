@@ -136,7 +136,6 @@ public class ProductServiceImpl implements ProductService {
 
     private Product dtoToEntity(ProductDTO productDTO) {
         Product product = Product.builder()
-                .pno(productDTO.getPno())
                 .pname(productDTO.getPname())
                 .pdesc(productDTO.getPdesc())
                 .price(productDTO.getPrice())

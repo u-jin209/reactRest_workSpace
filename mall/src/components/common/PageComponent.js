@@ -1,8 +1,6 @@
 import React from 'react';
 
 function PageComponent({serverData, movePage}) {
-    console.log("========================")
-    console.log(serverData)
     //serverData.prev, pageNumList, next
     return (
         <div className="m-6 flex justify-center">

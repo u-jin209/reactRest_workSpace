@@ -1,6 +1,5 @@
 package com.react.mallapi.controller;
 
-import com.react.mallapi.domain.Product;
 import com.react.mallapi.dto.PageRequestDTO;
 import com.react.mallapi.dto.PageResponseDTO;
 import com.react.mallapi.dto.ProductDTO;
@@ -27,16 +26,16 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/")
-    public Map<String, String> register(ProductDTO productDTO){
+    public Map<String, Long> register(ProductDTO productDTO){
         log.info("register : " + productDTO);
         List<MultipartFile> files = productDTO.getFiles();
         List<String> uploadedFileNames = fileUtil.saveFile(files);
 
         productDTO.setUploadFileNames(uploadedFileNames);
         log.info("uploadedFileNames : " + uploadedFileNames);
-        productService.register(productDTO);
+        Long pno = productService.register(productDTO);
 
-        return Map.of("RESULT", "SUCCESS");
+        return Map.of("RESULT", pno);
     }
 
     @GetMapping("/view/{fileName}")

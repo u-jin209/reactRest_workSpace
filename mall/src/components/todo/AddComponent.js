@@ -16,15 +16,12 @@ function AddComponent(props) {
     const { moveToList } = useCustomMove()
 
     const handleChangeTodo = (e) => {
-        console.log(e.target.name, e.target.value)
         todo[e.target.name] = e.target.value
         setTodo({...todo})
     }
     const handleClickAdd = () => {
-        console.log(todo)
         postAdd(todo).then( result =>
         {
-            console.log(result.TNO)
             setResult(result.TNO)
             setTodo({...initState})
         })
